@@ -1,0 +1,9 @@
+{
+    "id": "examplewaowyippie",
+    "name": "blah",
+    "author": ["ambray"],
+    "description": "a mod that exists ig",
+    "prefix": "blah",
+    "main_file": "main.lua",
+    "version": "0.0.1"
+}
