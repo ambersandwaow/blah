@@ -18,5 +18,11 @@ SMODS.Atlas{
     px = 71,
     py = 90
 }
+SMODS.Atlas{
+    key = 'diesel',
+    path = 'diesel.png',
+    px = 71,
+    py = 90
+}
 
 assert(SMODS.load_file("src/jokers.lua"))() 

@@ -58,3 +58,45 @@ SMODS.Joker{
         return card.ability.extra.rewardDollars
     end
 }
+
+SMODS.Joker{
+    key = 'diesel',
+    atlas = 'diesel',
+    discovered = true,
+    pos = {x=0, y=0},
+    rarity = 2,
+    cost = 5,
+    config = {extra = {
+        d6Remain = 5,
+        speedRemain = 3
+    }},
+    loc_vars = function(self,info_queue,card)
+        return{vars = {
+            card.ability.extra.d6Remain,
+            card.ability.extra.speedRemain,
+            localize { type = 'name_text', set = 'Tag', key = 'tag_d_six'},
+            localize { type = 'name_text', set = 'Tag', key = 'tag_skip'}
+        }}
+    end,
+    calculate = function(self,card,context)
+        if context.setting_blind and G.GAME.blind_on_deck == "Small" or context.setting_blind and G.GAME.blind_on_deck == "Big" then
+            G.E_MANAGER:add_event(Event({
+                func = function()
+                    add_tag({ key = 'tag_d_six' })
+                    play_sound('generic1', 0.9 + math.random() * 0.1, 0.8)
+                    play_sound('holo1', 1.2 + math.random() * 0.1, 0.4)
+                    return true
+                end
+            }))
+        elseif context.setting_blind and G.GAME.blind_on_deck == "Boss" then
+             G.E_MANAGER:add_event(Event({
+                func = function()
+                    add_tag({ key = 'tag_skip' })
+                    play_sound('generic1', 0.9 + math.random() * 0.1, 0.8)
+                    play_sound('holo1', 1.2 + math.random() * 0.1, 0.4)
+                    return true
+                end
+            }))
+        end
+    end
+}

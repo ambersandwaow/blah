@@ -1,3 +1,12 @@
 {
-    "workspace.library": ["/home/amber/.steam/steam/steamapps/compatdata/2379780/pfx/drive_c/users/steamuser/AppData/Roaming/Balatro/Mods/smodss","/home/amber/.steam/steam/steamapps/compatdata/2379780/pfx/drive_c/users/steamuser/AppData/Roaming/Balatro/Mods/lovely"]
+    "workspace.library": ["/home/amber/.steam/steam/steamapps/compatdata/2379780/pfx/drive_c/users/steamuser/AppData/Roaming/Balatro/Mods/smodss","/home/amber/.steam/steam/steamapps/compatdata/2379780/pfx/drive_c/users/steamuser/AppData/Roaming/Balatro/Mods/lovely"],
+    "diagnostics.globals": [
+        "SMODS",
+        "G",
+        "Event",
+        "localize",
+        "play_sound",
+        "add_tag"
+
+    ]
 }
