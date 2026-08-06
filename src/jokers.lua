@@ -66,6 +66,7 @@ SMODS.Joker{
     pos = {x=0, y=0},
     rarity = 2,
     cost = 5,
+    eternal_compat = false,
     config = {extra = {
         d6Remain = 5,
         speedRemain = 3
@@ -80,6 +81,7 @@ SMODS.Joker{
     end,
     calculate = function(self,card,context)
         if context.setting_blind and G.GAME.blind_on_deck == "Small" or context.setting_blind and G.GAME.blind_on_deck == "Big" then
+            card.ability.extra.d6Remain = card.ability.extra.d6Remain - 1
             G.E_MANAGER:add_event(Event({
                 func = function()
                     add_tag({ key = 'tag_d_six' })
@@ -88,8 +90,19 @@ SMODS.Joker{
                     return true
                 end
             }))
+            if card.ability.extra.d6Remain == 0 and not context.blueprint then
+                SMODS.destroy_cards(card,nil,nil,true)
+                return{message = 'outta gas'},
+                G.E_MANAGER:add_event(Event({
+                    func = function()
+                        play_sound('blah_noGas')
+                        return true
+                    end
+                }))
+            end
         elseif context.setting_blind and G.GAME.blind_on_deck == "Boss" then
-             G.E_MANAGER:add_event(Event({
+            card.ability.extra.speedRemain = card.ability.extra.speedRemain - 1
+            G.E_MANAGER:add_event(Event({
                 func = function()
                     add_tag({ key = 'tag_skip' })
                     play_sound('generic1', 0.9 + math.random() * 0.1, 0.8)
@@ -97,6 +110,16 @@ SMODS.Joker{
                     return true
                 end
             }))
+            if card.ability.extra.speedRemain == 0 and not context.blueprint then
+                SMODS.destroy_cards(card,nil,nil,true)
+                return{message = 'outta gas'},
+                G.E_MANAGER:add_event(Event({
+                    func = function()
+                        play_sound('blah_noGas')
+                        return true
+                    end
+                }))
+            end
         end
     end
 }

@@ -24,5 +24,9 @@ SMODS.Atlas{
     px = 71,
     py = 90
 }
+SMODS.Sound{
+    key = 'blah_noGas',
+    path = 'noGas.wav'
+}
 
 assert(SMODS.load_file("src/jokers.lua"))() 
