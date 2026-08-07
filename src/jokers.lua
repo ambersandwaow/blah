@@ -123,3 +123,44 @@ SMODS.Joker{
         end
     end
 }
+SMODS.Joker{
+    key = 'offPutting',
+    atlas = 'offPutting',
+    discovered = true,
+    pos = {x=0,y=0},
+    rarity = 3,
+    cost = 8,
+    config = {extra = {
+        spectralNum = 1,
+        spectralDenom = 3,
+        perRound = 1
+    }},
+    loc_vars = function (self,info_queue,card)
+        local numerator, denominator = SMODS.get_probability_vars(card, card.ability.extra.spectralNum, card.ability.extra.spectralDenom)
+        return{vars = {
+            numerator,
+            denominator
+    }}
+    end,
+    calculate = function(self,card,context)
+        if (context.remove_playing_cards or context.joker_type_destroyed) and G.GAME.consumeable_buffer + #G.consumeables.cards <
+        G.consumeables.config.card_limit and SMODS.pseudorandom_probability(card, 'blah_offPutting',
+        card.ability.extra.spectralNum, card.ability.extra.spectralDenom) then
+            G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+            G.E_MANAGER:add_event(Event({
+                trigger = 'before',
+                func = (function()
+                    SMODS.add_card {
+                        set = 'Spectral',
+                        key_append = 'blah_offPutting'
+                    }
+                    return true
+                    end)
+                }))
+            G.GAME.consumeable_buffer = 0
+        end
+        if context.selling_card and context.card.ability.set == "Spectral" and not context.blueprint then
+                G.GAME.blind.chips = math.floor(G.GAME.blind.chips / 2)
+        end
+    end
+}

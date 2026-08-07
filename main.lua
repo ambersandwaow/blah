@@ -24,6 +24,12 @@ SMODS.Atlas{
     px = 71,
     py = 90
 }
+SMODS.Atlas{
+    key = 'offPutting',
+    path = 'offPutting.png',
+    px = 71,
+    py = 90
+}
 SMODS.Sound{
     key = 'blah_noGas',
     path = 'noGas.wav'
