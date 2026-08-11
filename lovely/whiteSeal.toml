@@ -1,0 +1,22 @@
+#this was supposed to be a function to destroy every white seal in the deck at the end of the round
+#but im too stupid to implement (how to spell) that so its just nothing
+#if you want to you can try to make it i would be eternally greatful
+#the way i thought of was adding cards to a pool when applying the white seal and then
+#iterating through the deck and destroying cards in that pool
+#i couldnt find a good way to check if a card has a seal though or i wouldve used that
+
+[manifest]
+version = "1.0.0"
+priority = 0
+
+[[patches]]
+[patches.pattern]
+target = 'game.lua'
+pattern = '''
+if not nosave_shop then SMODS.calculate_context({starting_shop = true}) end
+'''
+position = "before"
+payload = '''
+'''
+
+match_indent = true

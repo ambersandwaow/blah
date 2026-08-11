@@ -1,34 +1,3 @@
-SMODS.Joker {
-    key = 'yummy',
-    atlas = 'area',
-    discovered = true,
-    pos = {
-        x = 0,
-        y = 0
-    },
-    config = {
-        extra = {
-            dollars = 5
-        }
-    },
-    rarity = 2,
-    cost = 6,
-    loc_vars = function(self, info_queue,card)
-        return{
-            vars = {
-                card.ability.extra.dollars
-            }
-        }
-    end,
-    calculate = function(self,card,context)
-        if context.joker_main then
-            return{
-                dollars = card.ability.extra.dollars
-            }
-        end
-    end
-}
-
 SMODS.Joker{
     key = 'eatRich',
     atlas = 'musk',
@@ -72,6 +41,8 @@ SMODS.Joker{
         speedRemain = 3
     }},
     loc_vars = function(self,info_queue,card)
+            info_queue[#info_queue + 1] = G.P_TAGS.tag_d_six--{key = 'tag_d_six', set = 'Tag'}
+            info_queue[#info_queue+1] = G.P_TAGS.tag_skip--{set = 'Tag', key = 'tag_skip'}
         return{vars = {
             card.ability.extra.d6Remain,
             card.ability.extra.speedRemain,
@@ -95,7 +66,7 @@ SMODS.Joker{
                 return{message = 'outta gas'},
                 G.E_MANAGER:add_event(Event({
                     func = function()
-                        play_sound('blah_noGas')
+                        play_sound('blah_noGas',1,1.5)
                         return true
                     end
                 }))
@@ -115,7 +86,7 @@ SMODS.Joker{
                 return{message = 'outta gas'},
                 G.E_MANAGER:add_event(Event({
                     func = function()
-                        play_sound('blah_noGas')
+                        play_sound('blah_noGas',1,1.5)
                         return true
                     end
                 }))
@@ -160,7 +131,163 @@ SMODS.Joker{
             G.GAME.consumeable_buffer = 0
         end
         if context.selling_card and context.card.ability.set == "Spectral" and not context.blueprint then
-                G.GAME.blind.chips = math.floor(G.GAME.blind.chips / 2)
+            G.GAME.blind.chips = math.floor(G.GAME.blind.chips / 2)
+        end
+    end
+}
+SMODS.Joker{
+    key = 'larva',
+    atlas = 'evolve',
+    pos = {x=0,y=0},
+    rarity = 1,
+    cost = 1,
+    discovered = true,
+    eternal_compat = false,
+    config = {extra = {
+        evolveRounds = 3,
+        currentRounds = 3,
+        chips = 4
+    }},
+    loc_vars = function(self,info_queue,card)
+        return{vars={
+            card.ability.extra.evolveRounds,
+            card.ability.extra.currentRounds,
+            card.ability.extra.chips
+        }}
+    end,
+    calculate = function(self,card,context)
+        if context.joker_main then
+            return{vars={card.ability.extra.chips}}
+        end
+        if context.end_of_round and context.main_eval then
+            if card.ability.extra.currentRounds == 0 and not context.blueprint then
+                SMODS.destroy_cards(card,nil,nil,true)
+                G.E_MANAGER:add_event(Event({
+                    func = (function()
+                        play_sound('generic1',0.9+math.random()*0.1,0.8)
+                        return true
+                    end)
+                }))
+                G.E_MANAGER:add_event(Event({
+                    trigger = 'after',
+                    delay = 0.5,
+                    func = (function()
+                        SMODS.add_card({key = 'j_blah_pupa'})
+                        play_sound('holo1', 1.2 + math.random() * 0.1, 0.4)
+                        return true
+                    end),
+                }))
+            else
+                card.ability.extra.currentRounds = card.ability.extra.currentRounds - 1
+            end
+        end
+    end
+}
+SMODS.Joker{
+    key = 'pupa',
+    atlas = 'evolve',
+    pos = {x=1,y=0},
+    rarity = 2,
+    cost = 5,
+    unlocked = true,
+    eternal_compat = false,
+    in_pool = function(self,args)
+        return false
+    end,
+    config = {extra = {
+        evolveRounds = 3,
+        currentRounds = 3,
+        mult = 4
+    }},
+    loc_vars = function(self,info_queue,card)
+        return{vars={
+            card.ability.extra.evolveRounds,
+            card.ability.extra.currentRounds,
+            card.ability.extra.mult
+        }}
+    end,
+    calculate = function(self,card,context)
+        if context.joker_main then
+            return{vars={card.ability.extra.mult}}
+        end
+        if context.card_added then
+            if context.card == 'j_blah_pupa' then
+                return{message = 'Evolved!'}
+            end
+        end
+        if context.end_of_round and context.main_eval then
+            if card.ability.extra.currentRounds == 0 and not context.blueprint then
+                SMODS.destroy_cards(card,nil,nil,true)
+                G.E_MANAGER:add_event(Event({
+                    func = (function()
+                        play_sound('generic1',0.9+math.random()*0.1,0.8)
+                        return true
+                    end)
+                }))
+                G.E_MANAGER:add_event(Event({
+                    trigger = 'after',
+                    delay = 0.5,
+                    func = (function()
+                        SMODS.add_card({key = 'j_blah_imago'})
+                        play_sound('holo1', 1.2 + math.random() * 0.1, 0.4)
+                        return true
+                    end),
+                }))
+            else
+                card.ability.extra.currentRounds = card.ability.extra.currentRounds - 1
+            end
+        end
+    end
+}
+SMODS.Joker{
+    key = 'imago',
+    atlas = 'evolve',
+    pos = {x=2,y=0},
+    rarity = 3,
+    cost = 8,
+    unlocked = true,
+    in_pool = function(self,args)
+        return false
+    end,
+    config={extra={
+        Xmult = 3
+    }},
+    loc_vars=function(self,info_queue,card)
+        return{vars={card.ability.extra.Xmult}}
+    end,
+    calculate = function(self,card,context)
+        if context.card_added then
+            if context.card == 'j_blah_imago' then
+                return{message = 'Evolved!'}
+            end
+        end
+        if context.joker_main then
+            return{vars={card.ability.extra.Xmult}}
+        end
+    end
+}
+SMODS.Joker{
+    key = 'poi',
+    atlas = 'poi',
+    pos = {x=0,y=0},
+    rarity = 2,
+    cost = 5,
+    discovered = true,
+    loc_vars = function(self,info_queue,card)
+        info_queue[#info_queue + 1] = G.P_SEALS.blah_white
+    end,
+    calculate = function(self,card,context)
+        if context.first_hand_drawn then
+            local selectedCard = pseudorandom_element(G.deck.cards, pseudoseed('j_blah_poi'))
+            if selectedCard ~= nil then
+                selectedCard:set_seal('blah_white')
+                G.E_MANAGER:add_event(Event({
+                    func = function()
+                        G.deck:juice_up()
+                        return true
+                    end
+                }))
+            end
         end
     end
 }

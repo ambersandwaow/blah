@@ -1,0 +1,24 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = "_pool[#_pool + 1] = v.key"
+position = "before"
+payload = '''
+
+if G.GAME.selected_back.name == "Excess Deck" then
+    if string.sub(v.key, 1, 5) == "j_blah" then
+	-- print('shop override')
+        for i = 1, 4 do
+            _pool[#_pool + 1] = v.key
+            _pool_size = _pool_size + 1
+        end
+    end
+end
+'''
+
+match_indent = true
