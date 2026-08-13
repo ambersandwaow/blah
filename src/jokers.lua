@@ -62,7 +62,7 @@ SMODS.Joker{
                 end
             }))
             if card.ability.extra.d6Remain == 0 and not context.blueprint then
-                SMODS.destroy_cards(card,nil,nil,true)
+                SMODS.pinch_and_remove(card,nil,nil,true)
                 return{message = 'outta gas'},
                 G.E_MANAGER:add_event(Event({
                     func = function()
@@ -82,7 +82,7 @@ SMODS.Joker{
                 end
             }))
             if card.ability.extra.speedRemain == 0 and not context.blueprint then
-                SMODS.destroy_cards(card,nil,nil,true)
+                SMODS.pinch_and_remove(card,nil,nil,true)
                 return{message = 'outta gas'},
                 G.E_MANAGER:add_event(Event({
                     func = function()
@@ -161,7 +161,7 @@ SMODS.Joker{
         end
         if context.end_of_round and context.main_eval then
             if card.ability.extra.currentRounds == 0 and not context.blueprint then
-                SMODS.destroy_cards(card,nil,nil,true)
+                SMODS.pinch_and_remove(card,nil,nil,true)
                 G.E_MANAGER:add_event(Event({
                     func = (function()
                         play_sound('generic1',0.9+math.random()*0.1,0.8)
@@ -217,7 +217,7 @@ SMODS.Joker{
         end
         if context.end_of_round and context.main_eval then
             if card.ability.extra.currentRounds == 0 and not context.blueprint then
-                SMODS.destroy_cards(card,nil,nil,true)
+                SMODS.pinch_and_remove(card,nil,nil,true)
                 G.E_MANAGER:add_event(Event({
                     func = (function()
                         play_sound('generic1',0.9+math.random()*0.1,0.8)
@@ -279,7 +279,7 @@ SMODS.Joker{
     calculate = function(self,card,context)
         if context.first_hand_drawn then
             local selectedCard = pseudorandom_element(G.deck.cards, pseudoseed('j_blah_poi'))
-            if selectedCard ~= nil then
+            if selectedCard ~= nil then -- idk why this exists but im too scared to remove it :sob:
                 selectedCard:set_seal('blah_white')
                 G.E_MANAGER:add_event(Event({
                     func = function()

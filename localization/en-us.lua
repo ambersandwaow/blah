@@ -77,14 +77,14 @@ return {
             b_blah_chud = {
                 name = 'Fuck My Stupid Chud Deck',
                 text = {
-                    'Start with {C:attention}#1#{},{C:attention} #2#{},',
-                    'and {C:attention}#3#{}. {C:blue}blah Jokers{}',
-                    'appear {C:attention}5x{} as often'
+                    'Start with {C:attention}#1#{} and {C:attention} #2#{}',
+                    '{C:blue}blah Jokers{} appear {C:attention}5x{} as often'
                 }
             }
         },
         blah_quest = {
             c_blah_yuri = {
+                label = 'im fawling',
                 name = 'Yuri',
                 text = {
                     {
@@ -94,15 +94,54 @@ return {
                     },
                     {
                         'This {C:blah_quest}Quest{} is complete when',
-                        'a {C:attention}#1#{} and {C:attention}#2#{} trigger'
+                        'you have a {C:attention}Blueprint{} or {C:attention}Brainstorm'
                     }
                 }
             },
             c_blah_ubi = {
                 name = 'Universal Basic Income',
                 text = {
+                    {
                     'This {C:blah_quest}Quest{} is completed when',
-                    'you have less than {C:money}$#1#'
+                    'you have {C:money}$#1#{} or less'
+                    },
+                    {
+                        'This {C:blah_quest}Quest{} gives an extra',
+                        '{C:money}$#2#{} when it is complete'
+                    }
+                }
+            },
+            c_blah_minimal = {
+                name = 'Minimalism',
+                text = {
+                    {
+                        'When this {C:blah_quest}Quest{} is obtained',
+                        'it creates {C:attention}#2#{}',
+                    },
+                    {
+                        'This {C:blah_quest}Quest{} is complete when',
+                        'you have less than {C:attention}#1#{} cards in deck'
+                    }
+                }
+            },
+            c_blah_study = {
+                name = 'Study',
+                text = {
+                {
+                    'When this {C:blah_quest}Quest{} is obtained',
+                    'it creates {C:attention}#1#{}',
+                },
+                {
+                    'This {C:blah_quest}Quest{} is complete when',
+                    'you play a {C:attention}Flush Five'
+                }
+                }
+            },
+            c_blah_trans = {
+                name = 'Transgenderrr',
+                text = {
+                    'This {C:blah_quest}Quest{} is complete when',
+                    'A{C:attention} Jack{} or {C:attention}Queen{} increases its rank'
                 }
             }
         },
@@ -118,14 +157,23 @@ return {
                 name = 'Gaia',
                 text = {
                     'If played with an {C:attention}Ambray{}',
-                    'card, creates a {C:dark_edition}negative{C:red} Brainstorm{}'
+                    'card, creates a {C:dark_edition}negative{C:attention} Brainstorm{}'
                 }
             },
             c_blah_ambrayTip = {
                 name = 'Ambray',
                 text = {
                     'If played with a {C:attention}Gaia{}',
-                    'card, creates a {C:dark_edition}negative{C:red} Blueprint{}'
+                    'card, creates a {C:dark_edition}negative{C:attention} Blueprint{}'
+                }
+            },
+            c_blah_whiteSealTip = {
+                name = 'broken rn sorry',
+                text = {
+                    'the destroy the card at the',
+                    'end of the round is really hard',
+                    'to make (requires multiple patches)',
+                    'so its not done rn sawry :('
                 }
             }
         },
@@ -188,7 +236,10 @@ return {
         labels = {
             blah_white_seal = 'White Seal',
             blah_quest = 'Quest',
-            blah_tooltips = 'Tooltips'
+            blah_tooltips = 'Tooltips',
+            gaiaBadge = 'it/its',
+            ambrayBadge = 'she/her',
+            modBadge = 'blah'
         }
     }
 }

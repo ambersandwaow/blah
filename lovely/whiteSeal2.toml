@@ -1,0 +1,17 @@
+#was also gonna be used for testing but its hard
+
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 50
+
+
+[[patches]]
+[patches.pattern]
+target = 'SMODS/src/utils.lua'
+pattern = '''if not SMODS.optional_features.quantum_enhancements or not G.hand then'''
+position = 'at'
+payload = '''
+if not SMODS.optional_features.quantum_enhancements or not G.hand then
+'''
+match_indent = true

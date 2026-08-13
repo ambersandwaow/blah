@@ -7,7 +7,6 @@ SMODS.Enhancement{
     no_rank = true,
     always_scores = true,
     loc_vars = function(self,info_queue,card)
-        info_queue[#info_queue + 1] = { key = 'c_blah_lazy', set = 'blah_tooltips'}
         info_queue[#info_queue + 1] = { key = 'c_blah_gaiaTip', set = 'blah_tooltips'}
     end
 }
@@ -20,11 +19,10 @@ SMODS.Enhancement {
     no_rank = true,
     always_scores = true,
     loc_vars = function(self,info_queue,card)
-        info_queue[#info_queue + 1] = { key = 'c_blah_lazy', set = 'blah_tooltips'}
         info_queue[#info_queue + 1] = { key = 'c_blah_ambrayTip', set = 'blah_tooltips'}
     end,
     calculate = function(self,card,context)
-        if context.cardarea == G.play and context.after then
+        if context.cardarea == G.play and context.main_scoring then
             for i in ipairs(G.play.cards) do
                 if G.play.cards[i] ~= nil then
                     if SMODS.has_enhancement(G.play.cards[i], 'm_blah_ambray') then
@@ -34,6 +32,7 @@ SMODS.Enhancement {
                         achoo:add_sticker('pinned',true)
                         local bleh=SMODS.add_card({set = 'Joker', key = 'j_blueprint', edition = 'e_negative'})
                         bleh:add_sticker('pinned',true)
+                        BLAH.yuriTrigger = true
                         G.E_MANAGER:add_event(Event({
                             func = function()
                                 card:juice_up()

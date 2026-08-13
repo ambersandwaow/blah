@@ -5,7 +5,7 @@ version = "1.0.0"
 dump_lua = true
 priority = 50
 
-# Add info queue stuffs
+
 [[patches]]
 [patches.pattern]
 target = 'functions/common_events.lua'

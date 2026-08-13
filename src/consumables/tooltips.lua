@@ -9,23 +9,22 @@ SMODS.ConsumableType {
     shop_rate = 0,
     no_collection = true,
 }
-SMODS.Consumable{
-    key = 'quests',
-    set = 'blah_tooltips',
-    no_collection = true
-}
-SMODS.Consumable{
-    key = 'lazy',
-    set = 'blah_tooltips',
-    no_collection = true
-}
-SMODS.Consumable{
-    key = 'gaiaTip',
-    set = 'blah_tooltips',
-    no_collection = true
-}
-SMODS.Consumable{
-    key = 'ambrayTip',
-    set = 'blah_tooltips',
-    no_collection = true
-}
+
+function BLAH.make_tooltip(name,vars)
+    return{
+        SMODS.Consumable{
+        key = name,
+        set = 'blah_tooltips',
+        no_collection = true,
+        loc_vars = function (self, info_queue, card)
+            return{vars={(vars or nil)}}
+        end
+        }
+    }
+end
+
+
+BLAH.make_tooltip('quests',BLAH.questReward)
+BLAH.make_tooltip('gaiaTip')
+BLAH.make_tooltip('ambrayTip')
+BLAH.make_tooltip('whiteSealTip')

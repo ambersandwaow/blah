@@ -5,18 +5,23 @@
 #iterating through the deck and destroying cards in that pool
 #i couldnt find a good way to check if a card has a seal though or i wouldve used that
 
+#ok update how tf do you destroy a table of cards
+
 [manifest]
 version = "1.0.0"
 priority = 0
 
 [[patches]]
 [patches.pattern]
-target = 'game.lua'
+target = 'card.lua'
 pattern = '''
-if not nosave_shop then SMODS.calculate_context({starting_shop = true}) end
+self.ability.seal = {}
 '''
 position = "before"
 payload = '''
+if self.seal == 'blah_white' then
+    table.insert(BLAH.markedForDeath,Card)
+end
 '''
 
 match_indent = true

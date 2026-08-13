@@ -9,6 +9,7 @@ SMODS.Seal{
         xmult = 6
     }},
     loc_vars = function(self,info_queue,card)
+        info_queue[#info_queue + 1] = { key = 'c_blah_whiteSealTip', set = 'blah_tooltips'}
         return{vars={
             card.ability.seal.extra.xmult
         }}
@@ -25,17 +26,6 @@ SMODS.Seal{
                         return true
                     end
                 }))
-        end
-        if context.end_of_round then
-            return{message = 'boom!'},
-            G.E_MANAGER:add_event(Event({
-                func = function()
-                    play_sound('blah_boom')
-                    card:juice_up()
-                    return true
-                end,
-                SMODS.destroy_cards(card,nil,nil,true)
-            }))
         end
     end
 }
