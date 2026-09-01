@@ -1,6 +1,6 @@
 return {
     extraGay = false,
     balanced = false,
-    musicR = false,
+    musicR = true,
     musicK = false
 }
