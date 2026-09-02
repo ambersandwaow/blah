@@ -13,14 +13,9 @@ SMODS.current_mod.config_tab = function()
                         n = G.UIT.C,
                         config = { align = "cm" },
                         nodes = {
-                            {n=G.UIT.R, config={align = 'tm', padding = 0.2},nodes = {
-                                {n=G.UIT.T, config={
-                                    text = 'requires restart', scale = 0.43, colour = G.C.UI.TEXT_LIGHT, shadow = true
-                                }}
-                            }},
                             {
                                 n = G.UIT.R,
-                                config = { align = "cr", padding = 0.01 },
+                                config = { align = "cm", padding = 0.01 },
                                 nodes = {
                                     create_toggle({
                                         label = "extra gay (adds a few more text boxes)",
@@ -32,6 +27,17 @@ SMODS.current_mod.config_tab = function()
                                         ref_table = config,
                                         ref_value = 'balanced'
                                     }),
+                                }
+                            },
+                            {n=G.UIT.R, config={align = 'bm', padding = 0.2, minh = 1},nodes = {
+                                {n=G.UIT.T, config={
+                                    text = 'requires restart', scale = 0.6, colour = G.C.UI.TEXT_LIGHT, shadow = true
+                                }}
+                            }},
+                            {
+                                n = G.UIT.R,
+                                config = { align = "cm", padding = 0.01 },
+                                nodes = {
                                     create_toggle({
                                         label = "remove custom music",
                                         ref_table = config,
@@ -41,7 +47,7 @@ SMODS.current_mod.config_tab = function()
                                         label = "remove everything except music",
                                         ref_table = config,
                                         ref_value = 'musicK'
-                                    }),
+                                    })
                                 }
                             }
                         }

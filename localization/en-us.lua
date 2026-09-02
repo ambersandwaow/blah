@@ -189,6 +189,14 @@ return {
                     'randomly enhance played cards'
                 }
             },
+            j_blah_artistic = {
+                name = 'Artistic Joker',
+                text = {
+                    '{C:green}#1# in #2#{} chance to',
+                    'turn scored cards into a random',
+                    'card in deck'
+                }
+            },
             j_blah_transness = {
                 name = 'The Trans Experience',
                 text = {

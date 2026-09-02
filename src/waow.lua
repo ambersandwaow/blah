@@ -8,7 +8,7 @@ SMODS.Joker{--True Love's First Kiss
     soul_pos = {x=5,y=1},
     cost = 20,
     rarity = 'blah_waow',
-    discovered = false,
+    unlocked = true,
     in_pool=function(self,args) if config ~= nil and config.balanced then return false else return true end end, --ugly as fuck
     config={extra={scalar=0.05,current=1}},
     loc_vars=function(self,info_queue,card)if config ~= nil then
@@ -40,7 +40,7 @@ SMODS.Joker{ --The Trans Experience
     soul_pos = {x=7,y=1},
     cost = 20,
     rarity = 'blah_waow',
-    discovered = false,
+    discovered = true,
     blueprint_compat = false,
     config={extra={willWin = false, stinkyyy = 0, tally = 0, retrigCount = 0, timer = 20}},
     loc_vars = function(self,info_queue,card)

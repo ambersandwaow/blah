@@ -31,8 +31,8 @@ end
 local wee = {}
 local funnyJokers = {'j_gros_michel','j_blah_pupa','j_joker','j_credit_card','j_mr_bones'}
 local funnyConsumables = {'c_pluto','c_blah_KoW','c_ouija','c_blah_gambling'}
-local funnyDecks = {'b_erratic','b_painted','b_anaglyph'}
-local funnyVouchers = {'v_glow_up','v_illusion'}
+local funnyDecks = {'b_erratic','b_painted','b_anaglyph','b_yellow'}
+local funnyVouchers = {'v_glow_up','v_illusion','v_antimatter'}
 function BLAH.funny(args)
     if args == nil then
         args = {}

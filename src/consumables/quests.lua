@@ -85,8 +85,8 @@ function BLAH.quest()
 
 end
 
---Yuri
-SMODS.Consumable{
+
+SMODS.Consumable{--Yuri
     key = 'yuri',
     set = 'blah_quest',
     atlas = 'blahConsumables',
@@ -143,8 +143,7 @@ SMODS.Consumable{
         return false
     end
 }
---Universal Basic Income
-SMODS.Consumable{
+SMODS.Consumable{--Universal Basic Income
     key = 'ubi',
     set = 'blah_quest',
     atlas = 'blahConsumables',
@@ -153,23 +152,19 @@ SMODS.Consumable{
     config={extra={limit = 0,extraDollars=5}},
     loc_vars = function(self,info_queue,card)
         info_queue[#info_queue + 1] = { key = 'c_blah_quests', set = 'blah_tooltips'}
-        info_queue[#info_queue + 1] = { key = 'c_blah_ubiTip', set = 'blah_tooltips'}
+        --info_queue[#info_queue + 1] = { key = 'c_blah_ubiTip', set = 'blah_tooltips'}
         return{vars={card.ability.extra.limit,card.ability.extra.extraDollars}}
     end,
     calculate = function(self,card,context)
-        if ((G.GAME.dollars or 0) + (G.GAME.dollar_buffer or 0)) <= card.ability.extra.limit then
-            return{
-                message = 'wahoo!!',
-                G.E_MANAGER:add_event(Event({
-                    func = function()
-                        card:juice_up(1,3)
-                        play_sound('blah_yippie')
-                        return true
-                    end
-                })),
-                dollars = (BLAH.questReward+card.ability.extra.extraDollars)
-            },
-            SMODS.destroy_cards(card,nil,nil,true)
+        if context.money_altered and ((G.GAME.dollars or 0) + (G.GAME.dollar_buffer or 0) + context.amount) <= card.ability.extra.limit then
+            G.E_MANAGER:add_event(Event({
+                func = function()
+                    card:juice_up(1,3)
+                    play_sound('blah_yippie')
+                    return{dollars = (BLAH.questReward+card.ability.extra.extraDollars),message='yippie!!'}
+                end
+            }))
+            SMODS.destroy_cards(card)
         end
     end,
     can_use = function()
@@ -185,8 +180,7 @@ SMODS.Consumable{
         return false
     end
 }
---Minimalism
-SMODS.Consumable{
+SMODS.Consumable{--Minimalism
     key = 'minimal',
     set = 'blah_quest',
     atlas = 'blahConsumables',
@@ -249,8 +243,7 @@ SMODS.Consumable{
         return false
     end
 }
---Study rename this
-SMODS.Consumable{
+SMODS.Consumable{--Study rename this
     key = 'study',
     set = 'blah_quest',
     atlas = 'blahConsumables',
@@ -297,8 +290,7 @@ SMODS.Consumable{
         return false
     end
 }
---Transgenderrr
-SMODS.Consumable{
+SMODS.Consumable{--Transgenderrr
     key = 'trans',
     set = 'blah_quest',
     atlas = 'blahConsumables',
@@ -338,8 +330,7 @@ SMODS.Consumable{
         return false
     end
 }
---Lets Go Gambling!!!
-SMODS.Consumable{
+SMODS.Consumable{--Lets Go Gambling!!!
     key = 'gambling',
     set = 'blah_quest',
     atlas = 'blahConsumables',
@@ -381,4 +372,12 @@ SMODS.Consumable{
         return false
     end
 }
---move to toronto wiht me 
+--[[SMODS.Consumable{--move to toronto wiht me 
+    key = 'toronto',
+    set = 'blah_quest',
+    atlas = 'blahConsumables',
+    pos = {x=3,y=0},
+    cost = 4,
+    config={extra={}},
+
+}]]

@@ -458,6 +458,7 @@ SMODS.Joker{--Only Just Begun
                 func=function()
                     context.full_hand[1]:set_ability('m_blah_lost')
                     context.full_hand[1]:juice_up()
+                    return true
                 end
             }))
         end
@@ -545,20 +546,17 @@ SMODS.Joker{--(⸝⸝>ᴗ<⸝⸝) Joker
         end
     end
 }
-SMODS.Joker{--something Joker
-    key = 'a',
+SMODS.Joker{--Artistic Joker
+    key = 'artistic',
     atlas = 'blahJokers',
     pos = {x=0,y=2},
     rarity = 2,
-    cost = 6,
+    cost = 5,
     unlocked = true,
-    config={extra={transNum=3,transDenom=3}},
+    config={extra={transNum=1,transDenom=3}},
     loc_vars = function (self,info_queue,card)
         local numerator, denominator = SMODS.get_probability_vars(card, card.ability.extra.transNum, card.ability.extra.transDenom)
-        return{vars = {
-            numerator,
-            denominator
-        }}
+        return{vars={numerator,denominator}}
     end,
     calculate = function(self,card,context)
         if context.individual and context.cardarea == G.play and #G.deck.cards > 0 and
