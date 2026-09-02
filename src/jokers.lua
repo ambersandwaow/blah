@@ -4,7 +4,7 @@ local config = SMODS.current_mod.config
 SMODS.Joker{--Eat the Rich
     key = 'eatRich',
     atlas = 'blahJokers',
-    discovered = true,
+    unlocked = true,
     blueprint_compat = false,
     pos = {x=2, y=1},
     config = {
@@ -39,7 +39,7 @@ SMODS.Joker{--Eat the Rich
 SMODS.Joker{--Diesel
     key = 'diesel',
     atlas = 'blahJokers',
-    discovered = true,
+    unlocked = true,
     pos = {x=1, y=1},
     rarity = 1,
     cost = 5,
@@ -105,7 +105,7 @@ SMODS.Joker{--Diesel
 SMODS.Joker{--Off Putting Joker
     key = 'offPutting',
     atlas = 'blahJokers',
-    discovered = true,
+    unlocked = true,
     pos = {x=6,y=0},
     rarity = 3,
     cost = 8,
@@ -156,7 +156,7 @@ SMODS.Joker{--Went Missing
     pos = {x=7,y=0},
     cost = 7,
     rarity = 2,
-    discovered = true,
+    unlocked = true,
     config={extra={xmult=0.1,destroyNum = 1,destroyDenom = 10}},
     loc_vars = function(self,info_queue,card)
         local numerator, denominator = SMODS.get_probability_vars(card, card.ability.extra.destroyNum, card.ability.extra.destroyDenom)
@@ -180,7 +180,7 @@ SMODS.Joker{--IO
     pos = {x=9,y=0},
     cost = 5,
     rarity = 2,
-    discovered = true,
+    unlocked = true,
     config={extra={dollars=15,remaining=15}},
     loc_vars = function(self,info_queue,card)
         return{vars={
@@ -204,8 +204,7 @@ SMODS.Joker{--Out for a Shower
     pos = {x=2,y=0},
     cost = 4,
     rarity = 1,
-    discovered = true,
-    dependencies = 'Spectrallib',
+    unlocked = true,
     config={extra={mult=1.2}},
     loc_vars = function(self,info_queue,card)
         return{vars={card.ability.extra.mult}}
@@ -234,7 +233,7 @@ SMODS.Joker{--Larva
     pos = {x=8,y=0},
     rarity = 1,
     cost = 1,
-    discovered = true,
+    unlocked = true,
     eternal_compat = false,
     config = {extra = {
         evolveRounds = 3,
@@ -354,7 +353,7 @@ SMODS.Joker{--P.O.I
     pos = {x=4,y=0},
     rarity = 2,
     cost = 5,
-    discovered = true,
+    unlocked = true,
     loc_vars = function(self,info_queue,card)
         info_queue[#info_queue+1] = {key = 'c_blah_whiteSealTip', set = 'blah_tooltips'}
     end,
@@ -382,14 +381,13 @@ SMODS.Joker{--P.O.I
         end
     end
 }
-SMODS.Joker{--(⸝⸝>︿<⸝⸝) joker
+SMODS.Joker{--Absurd joker
     key = 'absurd',
     atlas = 'blahJokers',
     pos = {x=8,y=1},
     rarity = 1,
     cost = 5,
-    discovered = true,
-    dependencies = 'Spectrallib',
+    unlocked = true,
     in_pool = function(self,args)
         if config ~= nil and not config.balanced then return true end
         return false
@@ -413,7 +411,7 @@ SMODS.Joker{--Cuddles in the Woods
     pos = {x=3,y=1},
     cost = 6,
     rarity = 2,
-    discovered = true,
+    unlocked = true,
     config={extra={x=1}},
     loc_vars = function (self, info_queue, card)
         info_queue[#info_queue+1] = {key = 'c_blah_gaiaTip', set = 'blah_tooltips'}
@@ -449,7 +447,7 @@ SMODS.Joker{--Only Just Begun
     pos  = {x=5,y=0},
     cost = 6,
     rarity = 2,
-    discovered = true,
+    unlocked = true,
     blueprint_compat = false,
     loc_vars = function(self,info_queue,card)
         info_queue[#info_queue+1] = {key = 'c_blah_lostTip', set = 'blah_tooltips'}
@@ -472,7 +470,7 @@ SMODS.Joker{--Whatever it Takes
     pos = {x=0,y=0},
     cost = 6,
     rarity = 2,
-    discovered = true,
+    unlocked = true,
     blueprint_compat = false,
     config = {extra={dollars=5,limit=25,hsize=0}},
     loc_vars=function(self,info_queue,card)
@@ -501,7 +499,7 @@ SMODS.Joker{-- Unique Joker
     pos = {x=1,y=0},
     cost = 6,
     rarity = 3,
-    discovered = true,
+    unlocked = true,
     config = {extra={chips=0,mult=0,xmult=1,cmod=5,mmod=1,xmod=0.15}},
     loc_vars = function(self,info_queue,card)
         info_queue[#info_queue+1] = {key = 'c_blah_uniqueTip', set = 'blah_tooltips'}
@@ -515,10 +513,57 @@ SMODS.Joker{-- Unique Joker
             card.ability.extra.chips = (BLAH.consumablesBought or 0)*card.ability.extra.cmod --all these are tracked in main.lua
             card.ability.extra.mult = (BLAH.jokersBought or 0)*card.ability.extra.mmod
             card.ability.extra.xmult = (BLAH.vouchersBought or 0)*card.ability.extra.xmod+1
---            print(BLAH.consumablesBought,BLAH.jokersBought,BLAH.vouchersBought)
         end
         if context.joker_main then
             return{chips=card.ability.extra.chips,mult=card.ability.extra.mult,xmult=card.ability.extra.xmult}
+        end
+    end
+}
+SMODS.Joker{--(⸝⸝>ᴗ<⸝⸝) Joker
+    key = 'sillyy',
+    atlas = 'blahJokers',
+    pos = {x=9,y=1},
+    rarity = 1,
+    cost = 4,
+    unlocked = true,
+    config = {extra = {
+        num = 1,
+        denom = 10
+    }},
+    loc_vars = function (self,info_queue,card)
+        local numerator, denominator = SMODS.get_probability_vars(card, card.ability.extra.num, card.ability.extra.denom)
+        return{vars = {
+            numerator,
+            denominator
+        }}
+    end,
+    calculate = function(self,card,context)
+        if context.individual and context.cardarea == G.play and
+        SMODS.pseudorandom_probability(card, 'siwwyy',card.ability.extra.num, card.ability.extra.denom) then
+            local waa = SMODS.poll_enhancement({guaranteed = true})
+            context.other_card:set_ability(waa)
+        end
+    end
+}
+SMODS.Joker{--something Joker
+    key = 'a',
+    atlas = 'blahJokers',
+    pos = {x=0,y=2},
+    rarity = 2,
+    cost = 6,
+    unlocked = true,
+    config={extra={transNum=3,transDenom=3}},
+    loc_vars = function (self,info_queue,card)
+        local numerator, denominator = SMODS.get_probability_vars(card, card.ability.extra.transNum, card.ability.extra.transDenom)
+        return{vars = {
+            numerator,
+            denominator
+        }}
+    end,
+    calculate = function(self,card,context)
+        if context.individual and context.cardarea == G.play and #G.deck.cards > 0 and
+        SMODS.pseudorandom_probability(card, 'YOWCH',card.ability.extra.transNum, card.ability.extra.transDenom) then
+            SMODS.copy_card(pseudorandom_element(G.deck.cards),{new_card=context.other_card})
         end
     end
 }

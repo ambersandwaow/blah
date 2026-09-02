@@ -172,7 +172,7 @@ SMODS.Consumable{
             SMODS.destroy_cards(card,nil,nil,true)
         end
     end,
-  can_use = function()
+    can_use = function()
         return true
     end,
     keep_on_use = function()
@@ -180,6 +180,9 @@ SMODS.Consumable{
     end,
     use = function(self,card,area,copier)
         BLAH.quest()
+    end,
+    can_sell = function(self,card,context)
+        return false
     end
 }
 --Minimalism
@@ -241,6 +244,9 @@ SMODS.Consumable{
     end,
     use = function(self,card,area,copier)
         BLAH.quest()
+    end,
+    can_sell = function(self,card,context)
+        return false
     end
 }
 --Study rename this
@@ -286,6 +292,9 @@ SMODS.Consumable{
     end,
     use = function(self,card,area,copier)
         BLAH.quest()
+    end,
+    can_sell = function(self,card,context)
+        return false
     end
 }
 --Transgenderrr
@@ -324,7 +333,10 @@ SMODS.Consumable{
     end,
     use = function(self,card,area,copier)
         BLAH.quest()
-        end
+    end,
+    can_sell = function(self,card,context)
+        return false
+    end
 }
 --Lets Go Gambling!!!
 SMODS.Consumable{
@@ -364,6 +376,9 @@ SMODS.Consumable{
     end,
     use = function(self,card,area,copier)
         BLAH.quest()
+    end,
+    can_sell = function(self,card,context)
+        return false
     end
 }
 --move to toronto wiht me 

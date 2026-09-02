@@ -110,25 +110,25 @@ SMODS.Atlas{
 if not SMODS.current_mod.config.musicR then
     SMODS.Sound{
         key = 'blah_music_1',
-        path = 'mainMusic.wav',
+        path = 'mainMusic.mp3',
         replace = 'music1',
         pitch = 1
     }
     SMODS.Sound{
         key = 'blah_music_2',
-        path = 'packMusic.wav',
+        path = 'packMusic.mp3',
         replace = 'music2',
         pitch = 1
     }
     SMODS.Sound{
         key = 'blah_music_4',
-        path = 'shopMusic.wav',
+        path = 'shopMusic.mp3',
         replace = 'music4',
         pitch = 1
     }
     SMODS.Sound{
         key = 'blah_music_5',
-        path = 'bossMusic.wav',
+        path = 'bossMusic.mp3',
         replace = 'music5',
         pitch = 1
     }

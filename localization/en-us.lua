@@ -128,7 +128,7 @@ return {
                 }
             },
             j_blah_absurd = {
-                name = 'Absurd Joker',--{f:blah_wee}(⸝⸝>ᴗ<⸝⸝){}
+                name = 'Absurd Joker',
                 text = {
                     'At the start of every round',
                     'add {C:attention}1{} random',
@@ -180,6 +180,13 @@ return {
                     'for every {C:money}$#1#{} under {C:money}$0{} you',
                     'have, gain {C:attention}+1{} hand size',
                     '{C:inactive}currently {C:attention}+#3#{C:inactive} hand size'
+                }
+            },
+            j_blah_sillyy = {
+                name = '{f:blah_wee}(⸝⸝>ᴗ<⸝⸝){} Joker',
+                text = {
+                    '{C:green}#1# in #2#{} chance to',
+                    'randomly enhance played cards'
                 }
             },
             j_blah_transness = {
@@ -295,6 +302,13 @@ return {
                     'Enhance {C:attention}#1#{} selected card',
                     'into either a {C:attention}#2#{} card',
                     'or a {C:attention}#3#{} card'
+                }
+            },
+            c_blah_KioW = {
+                name = 'King of Wands',
+                text = {
+                    'Send #1# {C:green}random{} owned joker',
+                    'to your hand'
                 }
             }
         },
@@ -421,7 +435,8 @@ return {
                 name = 'Quest',
                 text = {
                     'When a {C:blah_quest}Quest{} is complete',
-                    'it is {C:red}destroyed{} and you get {C:money}$15'
+                    'it is {C:red}destroyed{} and you get {C:money}$15',
+                    '{C:blah_quest}Quests{} cannot be {C:money}sold'
                 }
             },
             c_blah_gaiaTip = {

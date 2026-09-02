@@ -238,3 +238,48 @@ SMODS.Consumable{--Queen of Wands
         return G.hand and #G.hand.highlighted > 0 and #G.hand.highlighted <= card.ability.max_highlighted
     end,
 }
+SMODS.Consumable{
+    key = 'KioW',
+    set = 'Tarot',
+    atlas = 'blahConsumables',
+    pos = {x=3,y=2},
+    config = {extra={max=1}},
+    loc_vars = function(self,info_queue,card)
+        return{vars={card.ability.extra.max}}
+    end,
+    use = function(self,card,area,copier)
+        G.E_MANAGER:add_event(Event({
+            trigger = 'after',
+            delay = 0.4,
+            func = function()
+                play_sound('tarot1')
+                card:juice_up(0.3, 0.5)
+                return true
+            end
+        }))
+        delay(0.2)
+        G.E_MANAGER:add_event(Event({
+            trigger = 'after',
+            delay = 0.1,
+            func = function()
+                local bingus = pseudorandom_element(G.jokers.cards)
+                local awoo = SMODS.add_card({set='Base'})
+                awoo:set_ability(bingus.config.center.key)
+                for k, v in pairs(bingus.ability) do
+                    if type(v) == 'table' then
+                        awoo.ability[k] = copy_table(v)
+                    else
+                        awoo.ability[k] = v
+                    end
+                end
+                play_sound('tarot2', 1, 0.6)
+                awoo:juice_up(0.3, 0.3)
+                SMODS.destroy_cards(bingus)
+                return true
+            end
+        }))
+    end,
+    can_use = function()
+        if #G.jokers.cards>0 then return true end return false
+    end
+}
